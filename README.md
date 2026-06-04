@@ -1,73 +1,53 @@
-# React + TypeScript + Vite
+# AI-JOB — Профессиональная сеть и доска объявлений о вакансиях на основе ИИ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AI-JOB — это современная высокопроизводительная платформа для профессионального нетворкинга и поиска работы, разработанная специально для **соискателей** и **организаций**. Приложение включает в себя экосистему с элегантными макетами Bento-grid, инструментами с поддержкой ИИ, фильтрацией кандидатов/вакансий в режиме реального времени и внутренней коммуникацией.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Технологический стек и ключевые библиотеки
 
-## React Compiler
+Проект построен на основе современной масштабируемой фронтенд-архитектуры с использованием **React**, **TypeScript** и **Vite** для молниеносной компиляции.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Основная архитектура и маршрутизация
+* **React 18 и TypeScript:** Строгая типизация компонентов, действий Redux и полезных нагрузок API обеспечивает стабильность корпоративного уровня.
 
-## Expanding the ESLint configuration
+* **Vite:** Используется в качестве сборщика фронтенда следующего поколения и сервера разработки.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* **React Router DOM (`react-router-dom`):** Управляет динамической маршрутизацией SPA, защищенными макетами и обеспечивает синхронизацию между параметрами запроса URL (например, `?search=`) и состояниями поиска.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 2. Глобальное управление состоянием
+* **Redux Toolkit (`@reduxjs/toolkit` и `react-redux`):** Реализует централизованное управление данными для унифицированных лент пользователей, запросов по конкретным заданиям, телеметрии аутентификации пользователей (`me`) и уровней чата в реальном времени.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+* **Asynchronous Thunks (`createAsyncThunk`):** Организует безопасные транзакционные побочные эффекты и обмен данными через API.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 3. UI-фреймворк и экосистема компонентов
+* **Tailwind CSS:** Используется для пользовательской системы дизайна токенов, ориентированной на функциональность, с переходом от стандартных шаблонов к высококачественным микроинтеракциям с эффектом размытия стекла (`backdrop-blur-md`), мягким теням Bento и современной типографике.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+* **shadcn/ui:** Нативная модульная компонентная основа, построенная на примитивах **Radix UI** для доступных и высокопроизводительных интерактивных состояний.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+* *Используемые компоненты:* `Avatar`, `Badge`, `Button`, `Card`, `DropdownMenu`, `Input`, `Separator`, `Tabs`, `Skeleton`.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* **Lucide React (`lucide-react`):** Чистый и согласованный набор векторных иконок, предоставляющий визуальные представления для инструментов ИИ (`Sparkles`), аналитики (`LayoutGrid`) и интерактивных состояний связи.
+
+
+### 4. Обработка форм и проверка на стороне клиента
+* **Formik:** Реактивно управляет состояниями форм (например, в интерактивных диалогах профиля пользователя и мастере публикации ленты).
+
+* **Yup:** Реализует декларативные схемы проверки во время выполнения, чтобы предотвратить отправку пустых состояний или поврежденных входных потоков на сервер.
+
+### 5. Сетевой уровень и аутентификация
+* **Axios:** Настроен с использованием централизованных шаблонов перехвата для динамического внедрения защищенных токенов bearer в исходящие заголовки.
+
+* **Утилиты декодирования JWT:** Безопасно анализирует подзагрузки токенов при инициализации для безопасного заполнения профилей пользователей без дополнительных задержек API.
+
+---
+
+## 📂 Обзор архитектуры
+
+```text
+src/
+├── api/ # Слой интеграции сервера Axiomatic (публикации, профили, сообщения)
+├── components/ # Атомарные сегменты системы пользовательского интерфейса и общие кросс-функциональные макеты
+├── pages/ # Модульные составные области просмотра (Главная, Профиль, Сообщения, Аутентификация)
+├── store/ # Централизованные срезы Redux Toolkit и настройка хранилища конфигурации
+└── utils/ # Вспомогательные функции для криптографии/токенов и калькуляторы макетов
